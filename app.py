@@ -12,6 +12,9 @@ TEMP_DOWNLOAD_PATH = os.path.join(os.getcwd(), "downloads")
 if not os.path.exists(TEMP_DOWNLOAD_PATH):
     os.makedirs(TEMP_DOWNLOAD_PATH)
 
+# Path to your exported cookies file
+COOKIES_FILE_PATH = 'path_to_your_cookies_file/cookies.json'  # Replace with the actual path to your cookies file
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -27,6 +30,7 @@ def download():
     # Download options for yt-dlp
     ydl_opts = {
         'outtmpl': os.path.join(download_folder, '%(title)s.%(ext)s'),
+        'cookies': COOKIES_FILE_PATH,  # Adding cookies to yt-dlp options
     }
 
     if file_type == 'audio':
