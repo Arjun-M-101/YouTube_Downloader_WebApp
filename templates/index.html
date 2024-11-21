@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>YouTube Downloader</h1>
+    <form action="/download" method="POST">
+        <label for="url">Enter YouTube URL:</label>
+        <input type="url" id="url" name="url" required>
+
+        <label for="file_type">Select File Type:</label>
+        <select id="file_type" name="file_type" required>
+            <option value="audio">Audio (MP3)</option>
+            <option value="video">Video (MP4)</option>
+        </select>
+
+        <div id="audio_quality_div" style="display:none;">
+            <label for="audio_quality">Select Audio Quality:</label>
+            <select id="audio_quality" name="audio_quality">
+                <option value="320k">320 kbps</option>
+                <option value="256k">256 kbps</option>
+                <option value="128k">128 kbps</option>
+            </select>
+        </div>
+
+        <div id="video_quality_div" style="display:none;">
+            <label for="video_quality">Select Video Quality:</label>
+            <select id="video_quality" name="video_quality">
+                <option value="480p">480p</option>
+                <option value="720p">720p</option>
+                <option value="1080p">1080p</option>
+            </select>
+        </div>
+
+        <button type="submit">Download</button>
+    </form>
+</div>
+
+<script>
+    const fileTypeSelect = document.getElementById('file_type');
+    const audioQualityDiv = document.getElementById('audio_quality_div');
+    const videoQualityDiv = document.getElementById('video_quality_div');
+
+    fileTypeSelect.addEventListener('change', function() {
+        if (fileTypeSelect.value === 'audio') {
+            audioQualityDiv.style.display = 'block';
+            videoQualityDiv.style.display = 'none';
+        } else if (fileTypeSelect.value === 'video') {
+            videoQualityDiv.style.display = 'block';
+            audioQualityDiv.style.display = 'none';
+        }
+    });
+
+    // Trigger change on load to set default
+    fileTypeSelect.dispatchEvent(new Event('change'));
+</script>
+
+</body>
+</html>
