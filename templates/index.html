@@ -45,7 +45,7 @@
     <h1>YouTube Downloader</h1>
     <form action="/download" method="POST">
         <label for="url">Enter YouTube URL:</label>
-        <input type="url" id="url" name="url" required>
+        <input type="url" id="url" name="url" placeholder="https://www.youtube.com/..." required>
 
         <label for="file_type">Select File Type:</label>
         <select id="file_type" name="file_type" required>
@@ -90,7 +90,7 @@
         }
     });
 
-    // Trigger change on load to set default
+    // Trigger change on load to set the default display
     fileTypeSelect.dispatchEvent(new Event('change'));
 </script>
 

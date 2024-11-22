@@ -36,11 +36,11 @@ def download():
     if file_type == 'audio':
         audio_quality = request.form['audio_quality']
         ydl_opts.update({
-            'format': f'bestaudio[abr={audio_quality}]',
+            'format': 'bestaudio/best',
             'postprocessors': [{
-                'key': 'FFmpegAudioConvertor',
+                'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
-                'preferredquality': audio_quality.split('k')[0],
+                'preferredquality': audio_quality.split("k")[0],
             }]
         })
     elif file_type == 'video':
